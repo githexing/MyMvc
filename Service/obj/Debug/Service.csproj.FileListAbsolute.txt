@@ -1,0 +1,7 @@
+E:\代码总汇\MyMVC\MVC\Service\bin\Debug\Service.dll
+E:\代码总汇\MyMVC\MVC\Service\bin\Debug\Service.pdb
+E:\代码总汇\MyMVC\MVC\Service\bin\Debug\EntityFramework.dll
+E:\代码总汇\MyMVC\MVC\Service\bin\Debug\EntityFramework.xml
+E:\代码总汇\MyMVC\MVC\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+E:\代码总汇\MyMVC\MVC\Service\obj\Debug\Service.dll
+E:\代码总汇\MyMVC\MVC\Service\obj\Debug\Service.pdb

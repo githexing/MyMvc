@@ -1,0 +1,112 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>wangEditor</title>
+    <link href="~/js/FWB/wangEditor.min.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #div1 {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <p>请输入内容...</p>
+    </div>
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+
+    @*<script>
+            $(function () {
+                $.ajax({
+                    url: "https://epay.163.com/order/orderQuery.htm",
+                    data:{"endTime": "2018-6-11","inoroutType": "all","keyword": "","page": "1","startTime": "2018-02-07","tradeStatus": "all"},
+                    success:function(ok)
+                    {
+                        console.log(ok);
+                    }
+                })
+            })
+        </script>*@
+    <button id="btn1">获取html</button>
+    @*<button id="btn3">获取html3</button>*@
+    <button id="btn2" onclick='confirm("确定要点击嘛？")'>点击我获取text</button>
+    <button id="btn4">点击我</button>
+    <script src="~/js/FWB/wangEditor.min.js"></script>
+    <script src="~/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        var E = window.wangEditor;
+        var editor2 = new E('#div1');
+        editor2.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
+        editor2.customConfig.uploadImgServer = '/Home/upload';
+        editor2.customConfig.uploadFileName = 'file'
+        editor2.customConfig.uploadImgMaxLength = 1;
+        editor2.customConfig.uploadImgHooks = {
+            customInsert: function (insertImg, result, editor) {
+                // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+                // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+                console.log(result.Data);
+                // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+                var url = result.Data
+                alert(url);
+                insertImg(url)
+                // result 必须是一个 JSON 格式字符串！！！否则报错
+            }
+        }
+        editor2.create();
+        //document.getElementById('btn1').addEventListener('click', function () {
+        //    // 读取 html
+        //    alert(editor2.txt.html())
+        //    var text = editor2.txt.html();
+        //    alert(text);
+        //    $.ajax({
+        //        url: "/hx/text?txt=" + text,
+        //        type: "post",
+        //        success: function (result) {
+        //            alert(1);
+        //            console.log(result);
+        //            //if (result.Msg == "ok") {
+        //            //    alert("保存成功！");
+        //            //}
+
+        //        }
+        //    })
+        //}, false);
+        $("#btn1").click(function () {
+            $.ajax({
+                url: "/Home/text", type: "post", data: { txt: editor2.txt.html()},
+                success: function (res) {
+                    alert(editor2.txt.html());
+                }
+            });
+        });
+
+        document.getElementById('btn2').addEventListener('click', function () {
+            // 读取 html
+            alert(editor2.txt.text());
+        }, false);
+        $(function () {
+            $("#btn4").click(function () {
+                $.ajax({
+                    url: "/Home/ggg", type: "post", data: { Age: "ASD" },
+                    success: function (res) {
+                        alert(211);
+                    }
+                });
+            })
+        })
+
+    </script>
+    <script>
+
+
+    </script>
+</body>
+</html>
